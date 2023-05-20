@@ -72,7 +72,7 @@ class RegisterController extends Controller
             $data = $request->input();
             $this-> validator($data);
             $this->create($data);
-            
+            $request->session()->put('username',$request->username);
             return redirect('added');
         }
         return view('auth.register');
@@ -86,23 +86,22 @@ class RegisterController extends Controller
     {
         Validator::make($data,[
             'username' => ['required','between:4,12'],
-            'mail' => ['required','between:4,12', 'email','unique:users,mail'],
+            'mail' => ['required','between:4,50','unique:users,mail'],
             'password' => ['required','between:4,12', 'unique:users,password','alpha_dash'],
             'password-confirm' => ['required', 'alpha_dash','between:4,12', 'unique:users,password','same:password'],
         ],[
-            'username.required' => '必須項目です',
-            'username.between' => '4文字以上12文字以下で入力してください',
-            'mail.required' => '必須項目です',
-            'mail.between' => '4文字以上12文字以下で入力してください',
-            'mail.email' => 'メールアドレスではありません',
+            'username.required' => 'ユーザー名は必須項目です',
+            'username.between' => 'ユーザー名は4文字以上12文字以下で入力してください',
+            'mail.required' => 'メールアドレスは必須項目です',
+            'mail.between' => 'メールアドレスは4文字以上50文字以下で入力してください',
             'mail.unique' => 'このメールアドレスはすでに使用されています',
-            'password.required' => '必須項目です',
-            'password.between' => '4文字以上12文字以下で入力してください',
+            'password.required' => 'パスワードは必須項目です',
+            'password.between' => 'パスワードは4文字以上12文字以下で入力してください',
             'password.unique' => 'このパスワードはすでに使用されています',
             'password.alpha_dash' => '英数字のみで入力してください',
-            'password-confirm.required' => '必須項目です',
+            'password-confirm.required' => 'パスワード確認必須項目です',
             'password-confirm.alpha_dash' => '英数字のみで入力してください',
-            'password-confirm.between' => '4文字以上12文字以下で入力してください',
+            'password-confirm.between' => 'パスワード確認は4文字以上12文字以下で入力してください',
             'password-confirm.unique' => 'このパスワードはすでに使用されています',
             'password-confirm.same' => 'パスワードと確認用パスワードが一致していません',
         ])->validate(); //バリデーションに引っかかった場合前のページに戻る

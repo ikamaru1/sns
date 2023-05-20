@@ -11,7 +11,7 @@
   <h3>UserName</h3>
 {{ Form::label('ユーザー名') }}
 {{ Form::text('username',null,['class' => 'input']) }}
-
+username
   <h3>MailAdress</h3>
 {{ Form::label('メールアドレス') }}
 {{ Form::text('mail',null,['class' => 'input']) }}
