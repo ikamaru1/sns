@@ -8,31 +8,31 @@
     <title></title>
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/reset.css">
+
     <!--スマホ,タブレット対応-->
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <!--サイトのアイコン指定-->
     <link rel="icon" href="" sizes="16x16" type="image/png" />
-    <link rel="icon" href="/Applications/MAMP/htdocs/dawnSNS-Laravel-6.20.43/public/images/main_logo.png" sizes="32x32" type="image/png" />
-    <link rel="icon" href="/Applications/MAMP/htdocs/dawnSNS-Laravel-6.20.43/public/images/main_logo.png" sizes="48x48" type="image/png" />
-    <link rel="icon" href="/Applications/MAMP/htdocs/dawnSNS-Laravel-6.20.43/public/images/main_logo.png" sizes="62x62" type="image/png" />
+    <link rel="icon" href="" sizes="32x32" type="image/png" />
+    <link rel="icon" href="" sizes="48x48" type="image/png" />
+    <link rel="icon" href="" sizes="62x62" type="image/png" />
     <!--iphoneのアプリアイコン指定-->
     <link rel="apple-touch-icon-precomposed" href="" />
     <!--OGPタグ/twitterカード-->
 </head>
 <body>
     <header>
-        <div id = "head">
-        <h1><a><img src="images/main_logo.png"></a></h1>
-            <div id="">
-                <div id="">
-                    <p>〇〇さん<img src="images/arrow.png"></p>
-                <div>
-                <ul>
-                    <li><a href="/top">ホーム</a></li>
-                    <li><a href="/profile">プロフィール</a></li>
-                    <li><a href="/logout">ログアウト</a></li>
+        <div id = "head" class="head">
+        <h1><a href="/top"><img src="images/main_logo.png" alt="アイコン"></a></h1>
+        <nav class="nav">
+                    <p class="has-child"><a href="#">{{session()->get('username')}}さん</a></p><img class="profile-img" src="images/dawn.png">
+                <ul class="dropdown_lists">
+                    <li class="dropdown__list"><a href="/top">ホーム</a></li>
+                    <li class="dropdown__list"><a href="/profile">プロフィール</a></li>
+                    <li class="dropdown__list"><a href="/login">ログアウト</a></li>
                 </ul>
-            </div>
+         </nav>
         </div>
     </header>
     <div id="row">
@@ -58,7 +58,8 @@
     </div>
     <footer>
     </footer>
-    <script src="JavaScriptファイルのURL"></script>
-    <script src="JavaScriptファイルのURL"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="  crossorigin="anonymous"></script>
+    <script src="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/5-1-1/js/5-1-1.js"></script>
+    <script src="/js/style.js"></script>
 </body>
 </html>
