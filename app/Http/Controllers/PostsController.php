@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Auth;
 
 class PostsController extends Controller
 {
@@ -11,8 +13,16 @@ class PostsController extends Controller
         $this->middleware('auth');
     }
 
-    public function index(){
-        return view('posts.index');
+    public function index()
+    {
+        $follows = DB::table('follows')
+            ->where('follower',Auth::id())
+            ->count();
+        $followers = DB::table('follows')
+            ->where('follow',Auth::id())
+            ->count();
+        return view('posts.index',['follows' => $follows,'followers' => $followers ]);
     }
+
 
 }

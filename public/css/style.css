@@ -19,6 +19,14 @@ header{
 #side-bar{
     flex: 0 0 19%;
     border-left: 1px solid #6C6C6C;
+    padding: 10px;
+    color: #999;
+}
+
+#confirm{
+    border-bottom: 1px solid #6C6C6C;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
 }
 
 .head{
@@ -103,6 +111,37 @@ nav p.has-child ul{
 
 nav ul li a{
 border:1px solid #ccc;
+}
+
+/*サイドバー*/
+.btn{
+    width: 140px;
+    height: 40px;
+    background-color: #3C4767;
+    border-radius: 10px;
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+    margin: 0 0 0 auto;
+}
+.btn a{
+    text-decoration: none;
+    color: #fff;
+}
+.follow{
+    display: flex;
+    justify-content: space-between;
+    margin: 10px auto 10px;
+}
+.user-btn{
+    margin-top: 50px;
+}
+.follow-btn{
+    color: #fff;
+    background-color: cornflowerblue;
+    border-radius: 10px;
+    width: 140px;
+    height: 40px;
 }
 
 

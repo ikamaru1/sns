@@ -45,5 +45,16 @@ Route::get('/follower-list','PostsController@index');
 //ログアウト
 Route::get('/login','Auth\LoginController@logout');
 
+//フォローリスト
+Route::get('/followList','FollowsController@followList');
 
+//フォロワーリスト
+Route::get('/followerList','FollowsController@followerList');
 
+//検索
+Route::get('/search','UsersController@search');
+Route::post('/search','UsersController@search');
+
+//フォロー機能
+Route::post('/follow/create','FollowsController@create');
+Route::post('/follow/delete','FollowsController@delete');
