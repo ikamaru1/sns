@@ -8,7 +8,7 @@
 
 @foreach($follow_posts as $follow_post)
 <img src="/images/{{ $follow_post->images }}" alt="">
-<<p>{{$follow_post->username}}</p>>
+<p>{{$follow_post->username}}</p>
 <p>{{$follow_post->posts}}</p>
 <<p>{{$follow_post->created_at}}</p>
 @endforeach

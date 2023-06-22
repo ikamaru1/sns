@@ -58,3 +58,6 @@ Route::post('/search','UsersController@search');
 //フォロー機能
 Route::post('/follow/create','FollowsController@create');
 Route::post('/follow/delete','FollowsController@delete');
+
+//投稿機能
+Route::post('/index','PostsController@post');

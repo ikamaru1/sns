@@ -18,11 +18,43 @@ class PostsController extends Controller
         $follows = DB::table('follows')
             ->where('follower',Auth::id())
             ->count();
+
         $followers = DB::table('follows')
             ->where('follow',Auth::id())
             ->count();
-        return view('posts.index',['follows' => $follows,'followers' => $followers ]);
+
+        $follow_ids = DB::table('follows')
+            ->where('follow',Auth::id())
+            ->pluck('follower');
+
+        $follower_icons = DB::table('users')
+            ->whereIn('id',$follow_ids)
+            ->select('id','images')
+            ->get();
+
+        $follower_posts = DB::table('posts')
+            ->join('users','posts.user_id','=','users.id')
+            ->whereIn('posts.user_id',$follow_ids)
+            ->select('users.images','users.username','posts.posts','posts.created_at as created_at')
+            ->get();
+        
+        $myposts = DB::table('posts')
+            ->where('user_id',Auth::id())
+            ->get();
+        
+        return view('posts.index',['follows' => $follows,'followers' => $followers,'follower_icons'=>$follower_icons, 'follower_posts'=>$follower_posts,'myposts'=>$myposts]);
     }
+
+    public function post(Request $request){
+        $myposts=$request->input('post');
+        DB::table('posts')
+        ->insert([
+            'posts'=>$myposts,
+            'user_id'=>Auth::id(),
+            'created_at'=>now()
+        ]);
+        return back();
+}
 
 
 }
