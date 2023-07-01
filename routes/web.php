@@ -61,3 +61,6 @@ Route::post('/follow/delete','FollowsController@delete');
 
 //投稿機能
 Route::post('/index','PostsController@post');
+
+//フォロー、フォロワーのプロフィールページ
+Route::get('/followsprofile/{userId}','FollowsController@followsprofile');

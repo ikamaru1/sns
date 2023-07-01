@@ -25,7 +25,7 @@ class FollowsController extends Controller
             ->count();
        
         $follower_ids = DB::table('follows')
-            ->where('follow',Auth::id())
+            ->where('follower',Auth::id())
             ->pluck('follow');
     
         $follow_icons = DB::table('users')
@@ -36,7 +36,7 @@ class FollowsController extends Controller
         $follow_posts = DB::table('posts')
                 ->join('users','posts.user_id','=','users.id')
                 ->whereIn('posts.user_id',$follower_ids)
-                ->select('users.images','users.username','posts.posts','posts.created_at as created_at')
+                ->select('users.images','users.username','posts.posts','posts.created_at as created_at','users.id')
                 ->get();
 
         return view('follows.followList',compact('follows', 'followers','follow_icons','follow_posts'));
@@ -63,7 +63,7 @@ class FollowsController extends Controller
         $follower_posts = DB::table('posts')
             ->join('users','posts.user_id','=','users.id')
             ->whereIn('posts.user_id',$follow_ids)
-            ->select('users.images','users.username','posts.posts','posts.created_at as created_at')
+            ->select('users.images','users.username','posts.posts','posts.created_at as created_at','users.id')
             ->get();
 
         return view('follows.followerList',compact('follows','followers','follower_icons','follower_posts'));
@@ -86,5 +86,25 @@ class FollowsController extends Controller
             'follower'=>Auth::id(),
         ])->delete();
         return back();
+}
+public function followsprofile($userId){
+    $follows = DB::table('follows')
+        ->where('follower',Auth::id())
+        ->count();
+
+    $followers = DB::table('follows')
+        ->where('follow',Auth::id())
+        ->count();
+    
+    $follow_ids = DB::table('follows')
+        ->where('follow',Auth::id())
+        ->pluck('follower');
+          
+    $userProfiles = DB::table('users')
+        ->where('id', $userId)
+        ->select('id','images','username','bio')
+        ->get();
+
+    return view('follows.followsprofile',['follows' => $follows,'followers' => $followers,'userProfiles' => $userProfiles]);
 }
 }

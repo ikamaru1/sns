@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="description" content="ページの内容を表す文章" />
     <title></title>
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="{{ asset('/css/reset.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
     <link rel="stylesheet" type="text/css" href="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/reset.css">
 
     <!--スマホ,タブレット対応-->
@@ -24,7 +24,7 @@
 <body>
     <header>
         <div id = "head" class="head">
-        <h1><a href="/top"><img src="images/main_logo.png" alt="アイコン"></a></h1>
+        <h1><a href="/top"><img src="{{ asset('/images/main_logo.png') }}" alt="アイコン"></a></h1>
         <nav class="nav">
                     <p class="has-child"><a href="#">{{session()->get('username')}}さん</a></p><img class="profile-img" src="images/dawn.png">
                 <ul class="dropdown_lists">

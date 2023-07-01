@@ -2,15 +2,23 @@
 
 @section('content')
 <h1>Follower list</h1>
-@foreach($follower_icons as $follower_icon)
-<img src="/images/{{ $follower_icon->images }}" alt="">
-@endforeach
+<div>
+    @foreach($follower_icons as $follower_icon)
+    <a href="/followsprofile/{{$follower_icon->id}}">
+      <img src="/images/{{ $follower_icon->images }}" alt="">
+    </a>
+    @endforeach
+</div>
 
-@foreach($follower_posts as $follower_post)
-<img src="/images/{{ $follower_post->images }}" alt="">
-<<p>{{$follower_post->username}}</p>>
-<p>{{$follower_post->posts}}</p>
-<<p>{{$follower_post->created_at}}</p>
-@endforeach
+<div>
+    @foreach($follower_posts as $follower_post)
+    <a href="/followsprofile/{{$follower_post->id}}">
+      <img src="/images/{{ $follower_post->images }}" alt="">
+    </a>
+    <p>{{$follower_post->username}}</p>
+    <p>{{$follower_post->posts}}</p>
+    <p>{{$follower_post->created_at}}</p>
+    @endforeach
+</div>
 
 @endsection

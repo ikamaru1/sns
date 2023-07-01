@@ -16,7 +16,15 @@ class UsersController extends Controller
     }
 
     public function profile(){
-        return view('users.profile');
+        $follows = DB::table('follows')
+        ->where('follower',Auth::id())
+        ->count();
+
+        $followers = DB::table('follows')
+            ->where('follow',Auth::id())
+            ->count();
+
+        return view('users.profile',['follows' => $follows,'followers' => $followers]);
     }
     
     public function search(Request $request){

@@ -27,12 +27,11 @@ class PostsController extends Controller
             ->where('follow',Auth::id())
             ->pluck('follower');
 
-        $follower_icons = DB::table('users')
-            ->whereIn('id',$follow_ids)
-            ->select('id','images')
-            ->get();
+        $follower_ids = DB::table('follows')
+            ->where('follow',Auth::id())
+            ->pluck('follow');
 
-        $follower_posts = DB::table('posts')
+        $follow_posts = DB::table('posts')
             ->join('users','posts.user_id','=','users.id')
             ->whereIn('posts.user_id',$follow_ids)
             ->select('users.images','users.username','posts.posts','posts.created_at as created_at')
@@ -42,7 +41,7 @@ class PostsController extends Controller
             ->where('user_id',Auth::id())
             ->get();
         
-        return view('posts.index',['follows' => $follows,'followers' => $followers,'follower_icons'=>$follower_icons, 'follower_posts'=>$follower_posts,'myposts'=>$myposts]);
+        return view('posts.index',['follows' => $follows,'followers' => $followers,'follow_posts'=>$follow_posts,'myposts'=>$myposts]);
     }
 
     public function post(Request $request){
